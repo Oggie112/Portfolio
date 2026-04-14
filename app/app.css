@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+:root {
+  /* Backgrounds */
+  --color-bg-base: #111a12;
+  --color-bg-surface: #1a271b;
+  --color-bg-raised: #243526;
+  --color-bg-stone: #2e3630;
+
+  /* Section-specific backgrounds (scroll animation targets) */
+  --color-section-hero: #111a12;
+  --color-section-about: #0f1a10;
+  --color-section-projects: #141f14;
+  --color-section-skills: #181f18;
+  --color-section-contact: #1a1f1a;
+
+  /* Green accent ramp */
+  --color-green-moss: #3a6b3c;
+  --color-green-fern: #4e8c50;
+  --color-green-sage: #6aaa6c;
+  --color-green-mist: #a8d4a9;
+
+  /* Stone / slate ramp */
+  --color-stone-dark: #2e3630;
+  --color-stone-mid: #4a5550;
+  --color-stone-lichen: #8a9e8c;
+  --color-stone-pale: #c4d4c6;
+
+  /* Borders */
+  --color-border: #3d5c40;
+  --color-border-muted: #243526;
+
+  /* Typography */
+  --color-text-primary: #f0f5f0;
+  --color-text-secondary: #a8bfaa;
+  --color-text-muted: #6a8a6c;
+  --color-text-accent: #a8d4a9;
+
+  /* Spacing & Layout */
+  --max-width: 1100px;
+  --section-padding: 7rem 0;
+  --nav-height: 64px;
+}
+
+html,
+body {
+  @apply min-h-screen;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  transition: background-color 800ms ease-in-out;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
