@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 export const SECTION_COLORS: Record<string, string> = {
-	hero: "#111a12",
-	about: "#0f1a10",
-	projects: "#141f14",
-	skills: "#181f18",
-	contact: "#1a1f1a",
+	hero: "#0c1a0d",
+	about: "#0f2018",
+	projects: "#141a0f",
+	skills: "#1b2314",
+	contact: "#1d2618",
 };
 
 /**

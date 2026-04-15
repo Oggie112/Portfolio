@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Route } from "./+types/home";
 import { BackdropAnimator } from "../components/BackdropAnimator";
 import { Nav } from "../components/layout/Nav";
@@ -6,8 +7,8 @@ import { Contact } from "../components/sections/Contact";
 import { Hero } from "../components/sections/Hero";
 import { Projects } from "../components/sections/Projects";
 import { Skills } from "../components/sections/Skills";
-import { handleContactForm } from "../lib/actions";
 import { useSectionBackground } from "../hooks/useSectionBackground";
+import type { Project } from "../content/projects";
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -19,21 +20,21 @@ export function meta({}: Route.MetaArgs) {
 	];
 }
 
-export async function action({ request }: Route.ActionArgs) {
-	const formData = await request.formData();
-	return handleContactForm(formData);
-}
-
 export default function Home() {
 	const currentSection = useSectionBackground();
+	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
 	return (
 		<>
 			<BackdropAnimator currentSection={currentSection} />
-			<Nav currentSection={currentSection} />
+			<Nav currentSection={currentSection} onNavigate={() => setSelectedProject(null)} />
 			<Hero />
 			<About />
-			<Projects />
+			<Projects
+				selectedProject={selectedProject}
+				onOpen={setSelectedProject}
+				onClose={() => setSelectedProject(null)}
+			/>
 			<Skills />
 			<Contact />
 		</>

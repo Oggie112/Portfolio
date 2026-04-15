@@ -21,9 +21,8 @@ export function BackdropAnimator({ currentSection }: BackdropAnimatorProps) {
 	return (
 		<motion.div
 			className="fixed inset-0 -z-10"
-			animate={{
-				backgroundColor: targetColor,
-			}}
+			initial={{ backgroundColor: SECTION_COLORS.hero }}
+			animate={{ backgroundColor: targetColor }}
 			transition={
 				prefersReducedMotion
 					? { duration: 0 }

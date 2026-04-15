@@ -1,148 +1,102 @@
-import { Form, useActionData, useNavigation } from "react-router";
-import type { ContactActionResult } from "../../lib/actions";
-import { Button } from "../ui/Button";
 import { SectionWrapper } from "../ui/SectionWrapper";
 
-const inputClass =
-	"w-full bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] rounded-md px-4 py-3 text-sm transition-colors duration-200 focus:outline-none focus:border-[var(--color-green-sage)] focus:ring-1 focus:ring-[var(--color-green-sage)]";
+function MailIcon() {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="18"
+			height="18"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		>
+			<rect width="20" height="16" x="2" y="4" rx="2" />
+			<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+		</svg>
+	);
+}
 
-const errorClass = "text-xs text-red-400 mt-1";
+function GitHubIcon() {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="18"
+			height="18"
+			viewBox="0 0 24 24"
+			fill="currentColor"
+		>
+			<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+		</svg>
+	);
+}
+
+function LinkedInIcon() {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="18"
+			height="18"
+			viewBox="0 0 24 24"
+			fill="currentColor"
+		>
+			<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+		</svg>
+	);
+}
+
+const links = [
+	{
+		label: "GitHub",
+		href: "https://github.com/Oggie112",
+		icon: <GitHubIcon />,
+		external: true,
+	},
+	{
+		label: "LinkedIn",
+		href: "https://www.linkedin.com/in/david-ogden-226398214",
+		icon: <LinkedInIcon />,
+		external: true,
+	},
+];
 
 export function Contact() {
-	const actionData = useActionData<ContactActionResult>();
-	const navigation = useNavigation();
-	const isSubmitting = navigation.state === "submitting";
-
 	return (
 		<SectionWrapper id="contact">
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-				<div>
-					<p className="text-[var(--color-text-muted)] text-sm font-mono mb-4 tracking-widest uppercase">
-						Contact
-					</p>
-					<h2 className="text-[var(--color-text-primary)] text-4xl font-semibold mb-4 leading-tight">
-						Get in touch
-					</h2>
-					<p className="text-[var(--color-text-secondary)] text-base leading-relaxed mb-8">
-						Have a project in mind, a question, or just want to say hello?
-						Drop me a message and I'll get back to you.
-					</p>
+			<div className="max-w-xl">
+				<p className="text-[var(--color-text-muted)] text-sm font-mono mb-4 tracking-widest uppercase">
+					Contact
+				</p>
+				<h2 className="text-[var(--color-text-primary)] text-4xl font-semibold mb-4 leading-tight">
+					Get in touch
+				</h2>
+				<p className="text-[var(--color-text-secondary)] text-base leading-relaxed mb-10">
+					I'm best reached my email, but feel free to connect with me on GitHub or LinkedIn as well.
+				</p>
 
-					{actionData?.success ? (
-						<div className="p-4 rounded-md border border-[var(--color-green-sage)] bg-[var(--color-bg-surface)]">
-							<p className="text-[var(--color-green-mist)] text-sm">
-								Message sent — I'll be in touch soon.
-							</p>
-						</div>
-					) : (
-						<Form method="post" className="space-y-5">
-							<input type="hidden" name="_intent" value="contact" />
+				<a
+					href="mailto:davidogden112@gmail.com"
+					className="inline-flex items-center gap-3 px-6 py-3 rounded-md border border-[var(--color-green-sage)] text-[var(--color-green-mist)] hover:bg-[var(--color-green-sage)] hover:text-[var(--color-bg-base)] transition-colors duration-200 font-medium text-sm mb-12"
+				>
+					<MailIcon />
+					Say hello
+				</a>
 
-							<div>
-								<label
-									htmlFor="name"
-									className="block text-[var(--color-text-secondary)] text-sm mb-1.5"
-								>
-									Name
-								</label>
-								<input
-									id="name"
-									name="name"
-									type="text"
-									placeholder="Your name"
-									autoComplete="name"
-									className={inputClass}
-								/>
-								{actionData?.fieldErrors?.name && (
-									<p className={errorClass}>{actionData.fieldErrors.name}</p>
-								)}
-							</div>
-
-							<div>
-								<label
-									htmlFor="email"
-									className="block text-[var(--color-text-secondary)] text-sm mb-1.5"
-								>
-									Email
-								</label>
-								<input
-									id="email"
-									name="email"
-									type="email"
-									placeholder="you@example.com"
-									autoComplete="email"
-									className={inputClass}
-								/>
-								{actionData?.fieldErrors?.email && (
-									<p className={errorClass}>{actionData.fieldErrors.email}</p>
-								)}
-							</div>
-
-							<div>
-								<label
-									htmlFor="message"
-									className="block text-[var(--color-text-secondary)] text-sm mb-1.5"
-								>
-									Message
-								</label>
-								<textarea
-									id="message"
-									name="message"
-									rows={5}
-									placeholder="What's on your mind?"
-									className={`${inputClass} resize-none`}
-								/>
-								{actionData?.fieldErrors?.message && (
-									<p className={errorClass}>
-										{actionData.fieldErrors.message}
-									</p>
-								)}
-							</div>
-
-							{actionData?.error && (
-								<p className={errorClass}>{actionData.error}</p>
-							)}
-
-							<Button
-								type="submit"
-								variant="primary"
-								disabled={isSubmitting}
-								className="w-full disabled:opacity-50 disabled:cursor-not-allowed"
-							>
-								{isSubmitting ? "Sending…" : "Send message"}
-							</Button>
-						</Form>
-					)}
-				</div>
-
-				<div className="lg:pt-20">
-					<h3 className="text-[var(--color-stone-lichen)] text-xs font-mono tracking-widest uppercase mb-6">
-						Other ways to reach me
-					</h3>
-					<div className="space-y-4">
+				<div className="flex gap-6">
+					{links.map(({ label, href, icon, external }) => (
 						<a
-							href="mailto:your@email.com"
-							className="flex items-center gap-3 text-[var(--color-text-secondary)] hover:text-[var(--color-green-mist)] transition-colors duration-200"
+							key={label}
+							href={href}
+							target={external ? "_blank" : undefined}
+							rel={external ? "noopener noreferrer" : undefined}
+							className="flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-green-mist)] transition-colors duration-200 text-sm"
 						>
-							<span className="text-sm">your@email.com</span>
+							{icon}
+							{label}
 						</a>
-						<a
-							href="https://github.com/yourusername"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-3 text-[var(--color-text-secondary)] hover:text-[var(--color-green-mist)] transition-colors duration-200"
-						>
-							<span className="text-sm">GitHub</span>
-						</a>
-						<a
-							href="https://linkedin.com/in/yourusername"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-3 text-[var(--color-text-secondary)] hover:text-[var(--color-green-mist)] transition-colors duration-200"
-						>
-							<span className="text-sm">LinkedIn</span>
-						</a>
-					</div>
+					))}
 				</div>
 			</div>
 		</SectionWrapper>

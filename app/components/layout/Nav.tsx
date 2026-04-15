@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 interface NavProps {
 	currentSection: string;
+	onNavigate?: () => void;
 }
 
 const NAV_LINKS = [
@@ -31,7 +32,7 @@ function scrollTo(id: string) {
 	document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
-export function Nav({ currentSection }: NavProps) {
+export function Nav({ currentSection, onNavigate }: NavProps) {
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -50,6 +51,7 @@ export function Nav({ currentSection }: NavProps) {
 	function handleNavLink(id: string) {
 		scrollTo(id);
 		setMenuOpen(false);
+		onNavigate?.();
 	}
 
 	return (
@@ -81,7 +83,7 @@ export function Nav({ currentSection }: NavProps) {
 							return (
 								<button
 									key={id}
-									onClick={() => scrollTo(id)}
+									onClick={() => { scrollTo(id); onNavigate?.(); }}
 									className={`relative text-sm transition-colors duration-200 pb-1 ${
 										isActive
 											? "text-[var(--color-text-accent)]"

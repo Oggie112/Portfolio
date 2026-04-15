@@ -51,10 +51,8 @@
 html,
 body {
   @apply min-h-screen;
-  background-color: var(--color-bg-base);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
-  transition: background-color 800ms ease-in-out;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;

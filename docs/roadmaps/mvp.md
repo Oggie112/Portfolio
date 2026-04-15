@@ -53,20 +53,18 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 
 ### In Progress <a name="m3-doing"></a>
 
-- [ ] `3CP.2` Populate real project and skills data in TypeScript content files
-
 ### To Do <a name="m3-todo"></a>
-
-- [ ] `3CP.1` Add project detail pages (`/projects/:slug`)
-- [ ] `3CP.3` Verify entrance animations on all sections (via `SectionWrapper`)
-- [ ] `3CP.5` Configure contact form email delivery (Resend)
-- [ ] `3CP.6` Optimise images and assets
 
 ### Blocked <a name="m3-blocked"></a>
 
 ### Completed <a name="m3-done"></a>
 
 - [x] `3CP.4` Add mobile hamburger navigation — expand `Nav.tsx` with full-screen overlay menu
+- [x] `3CP.2` Populate real project and skills data in TypeScript content files
+- [x] `3CP.5` Contact delivery — replaced form + Resend with mailto link and social links
+- [x] `3CP.1` Project detail view — implemented as `ProjectModal` rather than separate route
+- [x] `3CP.6` Asset optimisation — `width`/`height`/`loading` attrs on headshot; no other heavy assets
+- [x] `3CP.3` Entrance animations verified — scroll transitions and section background colours confirmed
 
 ---
 
@@ -77,7 +75,7 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 ### To Do <a name="m4-todo"></a>
 
 - [ ] `4LR.1` Vercel deployment configuration
-- [ ] `4LR.2` Environment variables setup (`.env` — `RESEND_API_KEY`, `CONTACT_TO_EMAIL`)
+- [ ] `4LR.2` Environment variables setup (`.env` — no Resend vars needed; add any future secrets here)
 - [ ] `4LR.3` Performance optimisation and bundle analysis
 - [ ] `4LR.4` Cross-browser testing
 - [ ] `4LR.5` Accessibility audit (WCAG compliance)
@@ -106,14 +104,6 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 
 ```mermaid
 graph LR
-  subgraph M3["M3 — Content & Polish"]
-    3CP.1["3CP.1\nProject detail pages"]:::open
-    3CP.2["3CP.2\nPopulate content"]:::open
-    3CP.3["3CP.3\nEntrance animations"]:::open
-    3CP.5["3CP.5\nResend email"]:::open
-    3CP.6["3CP.6\nOptimise assets"]:::open
-  end
-
   subgraph M4["M4 — Launch Ready"]
     4LR.1["4LR.1\nVercel deploy"]
     4LR.2["4LR.2\nEnv vars"]:::open
@@ -123,7 +113,6 @@ graph LR
     4LR.6["4LR.6\nSEO"]
   end
 
-  3CP.1 & 3CP.2 & 3CP.3 & 3CP.5 & 3CP.6 --> 4LR.1
   4LR.1 --> 4LR.2 & 4LR.3 & 4LR.4 & 4LR.5 & 4LR.6
 
   classDef blocked fill:#f9f,stroke:#c0c,color:#000

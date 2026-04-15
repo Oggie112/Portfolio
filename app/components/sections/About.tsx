@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { SectionWrapper } from "../ui/SectionWrapper";
 
 export function About() {
+	const [imageError, setImageError] = useState(false);
+
 	return (
 		<SectionWrapper id="about">
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -31,10 +34,18 @@ export function About() {
 				</div>
 
 				<div className="flex justify-center lg:justify-end">
-					<div className="w-72 h-80 rounded-lg bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] flex items-center justify-center">
-						<span className="text-[var(--color-text-muted)] text-sm font-mono">
-							photo
-						</span>
+					<div className="w-72 h-80 rounded-lg bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] flex items-center justify-center overflow-hidden">
+						{!imageError && (
+							<img
+								src="/assets/images/headshot.jpg"
+								alt="David Ogden"
+								width={288}
+								height={320}
+								loading="eager"
+								className="w-full h-full object-cover"
+								onError={() => setImageError(true)}
+							/>
+						)}
 					</div>
 				</div>
 			</div>

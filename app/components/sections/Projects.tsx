@@ -1,7 +1,8 @@
-import { Link } from "react-router";
+import type { Project } from "../../content/projects";
 import { projects } from "../../content/projects";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
+import { ProjectModal } from "../ui/ProjectModal";
 import { SectionWrapper } from "../ui/SectionWrapper";
 
 function ExternalLinkIcon() {
@@ -39,26 +40,23 @@ function GitHubIcon() {
 }
 
 interface ProjectCardProps {
-	slug: string;
-	title: string;
-	tagline: string;
-	tags: string[];
-	year: number;
-	url?: string;
-	repo?: string;
+	project: Project;
+	onOpen: (project: Project) => void;
 }
 
-function ProjectCard({ slug, title, tagline, tags, year, url, repo }: ProjectCardProps) {
+function ProjectCard({ project, onOpen }: ProjectCardProps) {
+	const { title, tagline, tags, year, url, repo } = project;
 	return (
-		<Card className="flex flex-col h-full">
+		<Card className="relative flex flex-col h-full hover:bg-[var(--color-green-moss)] hover:border-[var(--color-border)] transition-colors duration-500 overflow-hidden">
 			<div className="flex-1">
 				<div className="flex items-start justify-between gap-4 mb-3">
-					<Link
-						to={`/projects/${slug}`}
-						className="text-[var(--color-text-primary)] text-xl font-semibold hover:text-[var(--color-green-mist)] transition-colors duration-200"
+					<button
+						onClick={() => onOpen(project)}
+						className="text-left text-[var(--color-text-primary)] text-xl font-semibold after:absolute after:inset-0 focus:outline-none focus-visible:ring-2
+                       	focus-visible:ring-[var(--color-green-sage)] focus-visible:ring-offset-2 rounded-sm"
 					>
 						{title}
-					</Link>
+					</button>
 					<span className="text-[var(--color-text-muted)] text-xs font-mono shrink-0 mt-1">
 						{year}
 					</span>
@@ -80,7 +78,7 @@ function ProjectCard({ slug, title, tagline, tags, year, url, repo }: ProjectCar
 							href={url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-1.5 text-[var(--color-text-muted)] text-xs hover:text-[var(--color-green-mist)] transition-colors duration-200"
+							className="relative flex items-center gap-1.5 text-[var(--color-text-muted)] text-xs hover:text-[var(--color-green-mist)] transition-colors duration-200 z-10"
 						>
 							<ExternalLinkIcon />
 							Live
@@ -91,7 +89,7 @@ function ProjectCard({ slug, title, tagline, tags, year, url, repo }: ProjectCar
 							href={repo}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-1.5 text-[var(--color-text-muted)] text-xs hover:text-[var(--color-green-mist)] transition-colors duration-200"
+							className="relative flex items-center gap-1.5 text-[var(--color-text-muted)] text-xs hover:text-[var(--color-green-mist)] transition-colors duration-200 z-10"
 						>
 							<GitHubIcon />
 							Source
@@ -103,7 +101,13 @@ function ProjectCard({ slug, title, tagline, tags, year, url, repo }: ProjectCar
 	);
 }
 
-export function Projects() {
+interface ProjectsProps {
+	selectedProject: Project | null;
+	onOpen: (project: Project) => void;
+	onClose: () => void;
+}
+
+export function Projects({ selectedProject, onOpen, onClose }: ProjectsProps) {
 	const featured = projects.filter((p) => p.featured);
 	const rest = projects.filter((p) => !p.featured);
 
@@ -119,7 +123,7 @@ export function Projects() {
 			{featured.length > 0 && (
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 					{featured.map((project) => (
-						<ProjectCard key={project.slug} {...project} />
+						<ProjectCard key={project.slug} project={project} onOpen={onOpen} />
 					))}
 				</div>
 			)}
@@ -127,10 +131,12 @@ export function Projects() {
 			{rest.length > 0 && (
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{rest.map((project) => (
-						<ProjectCard key={project.slug} {...project} />
+						<ProjectCard key={project.slug} project={project} onOpen={onOpen} />
 					))}
 				</div>
 			)}
+
+			<ProjectModal project={selectedProject} onClose={onClose} />
 		</SectionWrapper>
 	);
 }
