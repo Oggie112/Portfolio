@@ -12,7 +12,15 @@ import { BackdropAnimator } from "./components/BackdropAnimator";
 import { useSectionBackground } from "./hooks/useSectionBackground";
 import "./app.css";
 
+const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0c1a0d"/>
+  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, ui-sans-serif, sans-serif" font-weight="700" font-size="26" fill="#a8d4a9" letter-spacing="-1">DO</text>
+</svg>`;
+
+const faviconUrl = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
+
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", type: "image/svg+xml", href: faviconUrl },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
