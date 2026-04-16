@@ -37,7 +37,7 @@ export function About() {
 					<div className="w-72 h-80 rounded-lg bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] flex items-center justify-center overflow-hidden">
 						{!imageError && (
 							<img
-								src="/public/images/headshot.jpg"
+								src="/images/headshot.jpg"
 								alt="David Ogden"
 								width={288}
 								height={320}
