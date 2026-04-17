@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import type { Project } from "../../content/projects";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 import { Badge } from "./Badge";
 
 interface ProjectModalProps {
@@ -67,6 +68,9 @@ function CloseIcon() {
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
 	const closeButtonRef = useRef<HTMLButtonElement>(null);
 	const previousFocusRef = useRef<HTMLElement | null>(null);
+	const panelRef = useRef<HTMLDivElement>(null);
+
+	useFocusTrap(panelRef, !!project);
 
 	useEffect(() => {
 		if (project) {
@@ -108,15 +112,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
 					{/* Panel */}
 					<motion.div
+						ref={panelRef}
 						key="panel"
 						initial={{ opacity: 0, y: 24 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: 24 }}
 						transition={{ duration: 0.25, ease: "easeOut" }}
 						role="dialog"
-					aria-modal="true"
-					aria-labelledby="modal-title"
-					className="fixed inset-x-0 bottom-0 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:top-[var(--nav-height)] md:bottom-auto z-40 w-full md:w-full md:max-w-2xl md:mt-8 bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] rounded-t-2xl md:rounded-2xl overflow-y-auto max-h-[85vh] md:max-h-[calc(100vh-var(--nav-height)-4rem)]"
+						aria-modal="true"
+						aria-labelledby="modal-title"
+						className="fixed inset-x-0 bottom-0 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:top-[var(--nav-height)] md:bottom-auto z-40 w-full md:w-full md:max-w-2xl md:mt-8 bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] rounded-t-2xl md:rounded-2xl overflow-y-auto max-h-[85vh] md:max-h-[calc(100vh-var(--nav-height)-4rem)]"
 						onClick={(e) => e.stopPropagation()}
 					>
 						<div className="p-8">

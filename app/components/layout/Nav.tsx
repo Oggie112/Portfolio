@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 interface NavProps {
 	currentSection: string;
@@ -35,6 +36,9 @@ function scrollTo(id: string) {
 export function Nav({ currentSection, onNavigate }: NavProps) {
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
+	const overlayRef = useRef<HTMLDivElement>(null);
+
+	useFocusTrap(overlayRef, menuOpen);
 
 	useEffect(() => {
 		const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -143,6 +147,7 @@ export function Nav({ currentSection, onNavigate }: NavProps) {
 			<AnimatePresence>
 				{menuOpen && (
 					<motion.div
+						ref={overlayRef}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}

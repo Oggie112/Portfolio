@@ -54,8 +54,8 @@ function ProjectCard({ project, onOpen }: ProjectCardProps) {
 				<div className="flex items-start justify-between gap-4 mb-3">
 					<button
 						onClick={() => onOpen(project)}
-						className="text-left text-[var(--color-text-primary)] text-xl font-semibold after:absolute after:inset-0 focus:outline-none focus-visible:ring-2
-                       	focus-visible:ring-[var(--color-green-sage)] focus-visible:ring-offset-2 rounded-sm"
+						aria-haspopup="dialog"
+						className="text-left text-[var(--color-text-primary)] text-xl font-semibold after:absolute after:inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-green-sage)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-surface)] rounded-sm"
 					>
 						{title}
 					</button>

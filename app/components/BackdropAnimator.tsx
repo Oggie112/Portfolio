@@ -20,6 +20,7 @@ export function BackdropAnimator({ currentSection }: BackdropAnimatorProps) {
 
 	return (
 		<motion.div
+			aria-hidden="true"
 			className="fixed inset-0 -z-10"
 			initial={{ backgroundColor: SECTION_COLORS.hero }}
 			animate={{ backgroundColor: targetColor }}

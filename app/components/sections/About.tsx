@@ -25,7 +25,6 @@ export function About() {
 						</p>
 					</div>
 				</div>
-
 				<div className="flex justify-center lg:justify-end">
 					<div className="w-72 h-80 rounded-lg bg-[var(--color-bg-surface)] border border-[var(--color-border-muted)] flex items-center justify-center overflow-hidden">
 						{!imageError && (
