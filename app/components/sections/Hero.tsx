@@ -1,6 +1,10 @@
 import { Button } from "../ui/Button";
 import { SectionWrapper } from "../ui/SectionWrapper";
 
+function scrollTo(id: string) {
+	document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
 export function Hero() {
 	return (
 		<SectionWrapper id="hero" className="min-h-screen flex items-center">
@@ -12,28 +16,20 @@ export function Hero() {
 					David Ogden
 				</h1>
 				<p className="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-10 max-w-xl">
-					I build thoughtful web applications — clean interfaces, solid
-					backends, and the kind of code that's still readable six months
-					later.
+					From half-baked ideas to pen & paper to deployment — turning good questions into good software, one problem at a time.
 				</p>
 				<div className="flex gap-4 flex-wrap">
 					<Button
+						href="#projects"
 						variant="primary"
-						onClick={() =>
-							document
-								.getElementById("projects")
-								?.scrollIntoView({ behavior: "smooth" })
-						}
+						onClick={(e) => { e.preventDefault(); scrollTo("projects"); }}
 					>
 						View my work
 					</Button>
 					<Button
+						href="#contact"
 						variant="ghost"
-						onClick={() =>
-							document
-								.getElementById("contact")
-								?.scrollIntoView({ behavior: "smooth" })
-						}
+						onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
 					>
 						Get in touch
 					</Button>

@@ -57,6 +57,7 @@ export function Nav({ currentSection, onNavigate }: NavProps) {
 	return (
 		<>
 			<nav
+				aria-label="Main navigation"
 				className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-24 transition-all duration-300 ${
 					scrolled || menuOpen
 						? "bg-[var(--color-bg-surface)] border-b border-[var(--color-border-muted)]"
@@ -81,9 +82,10 @@ export function Nav({ currentSection, onNavigate }: NavProps) {
 						{NAV_LINKS.map(({ id, label }) => {
 							const isActive = currentSection === id;
 							return (
-								<button
+								<a
 									key={id}
-									onClick={() => { scrollTo(id); onNavigate?.(); }}
+									href={`#${id}`}
+									onClick={(e) => { e.preventDefault(); scrollTo(id); onNavigate?.(); }}
 									className={`relative text-sm transition-colors duration-200 pb-1 ${
 										isActive
 											? "text-[var(--color-text-accent)]"
@@ -94,7 +96,7 @@ export function Nav({ currentSection, onNavigate }: NavProps) {
 									{isActive && (
 										<span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[var(--color-green-sage)]" />
 									)}
-								</button>
+								</a>
 							);
 						})}
 
@@ -148,14 +150,15 @@ export function Nav({ currentSection, onNavigate }: NavProps) {
 						className="fixed inset-0 z-40 bg-[var(--color-bg-surface)] flex flex-col px-6 md:hidden"
 						style={{ paddingTop: "var(--nav-height)" }}
 					>
-						<nav className="flex flex-col justify-center flex-1 gap-2">
+						<nav aria-label="Mobile navigation" className="flex flex-col justify-center flex-1 gap-2">
 							{NAV_LINKS.map(({ id, label }, index) => (
-								<motion.button
+								<motion.a
 									key={id}
+									href={`#${id}`}
 									initial={{ opacity: 0, x: -16 }}
 									animate={{ opacity: 1, x: 0 }}
 									transition={{ duration: 0.2, delay: index * 0.05 }}
-									onClick={() => handleNavLink(id)}
+									onClick={(e) => { e.preventDefault(); handleNavLink(id); }}
 									className={`text-left text-3xl font-semibold py-3 transition-colors duration-200 ${
 										currentSection === id
 											? "text-[var(--color-text-accent)]"
@@ -163,7 +166,7 @@ export function Nav({ currentSection, onNavigate }: NavProps) {
 									}`}
 								>
 									{label}
-								</motion.button>
+								</motion.a>
 							))}
 						</nav>
 

@@ -12,23 +12,16 @@ export function About() {
 						About
 					</p>
 					<h2 className="text-[var(--color-text-primary)] text-4xl font-semibold mb-6 leading-tight">
-						The developer behind the work
+						Who am I?
 					</h2>
 					<div className="space-y-4 text-[var(--color-text-secondary)] text-base leading-relaxed">
 						<p>
-							I'm a full-stack developer focused on building web applications
-							that are fast, accessible, and maintainable. I work across the
-							stack — from crafting interfaces in React and TypeScript to
-							designing APIs and working with PostgreSQL.
+						Before writing code professionally, I worked as a Legal Ombudsman. Navigating high-stakes, client-facing casework where getting the details right actually mattered.
+						That experience shaped how I build my code. I care about the people on the other side of the screen, promotingclear structure, accessible design, and code that does what it says it does. A project isn't done when it works, it's done when it's easy to understand and change.
 						</p>
 						<p>
-							I care about the details: good naming, clear structure, and code
-							that communicates its intent. A project isn't done when it works
-							— it's done when it's easy to understand and change.
-						</p>
-						<p>
-							[Add a personal touch here — outside interests, background,
-							location.]
+						I trained at Founders and Coders, a tuition-free, peer-led programme where you learn by building real things alongside other members. Picking up new technologies together, figuring it out as a team, and shipping software that actually solves something.
+						Outside of work I'm usually running, cooking something overly ambitious, or reading.
 						</p>
 					</div>
 				</div>

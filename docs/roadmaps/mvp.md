@@ -74,16 +74,17 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 
 ### To Do <a name="m4-todo"></a>
 
-- [ ] `4LR.1` Vercel deployment configuration
-- [ ] `4LR.2` Environment variables setup (`.env` — no Resend vars needed; add any future secrets here)
 - [ ] `4LR.3` Performance optimisation and bundle analysis
 - [ ] `4LR.4` Cross-browser testing
-- [ ] `4LR.5` Accessibility audit (WCAG compliance)
-- [ ] `4LR.6` SEO meta tags and social sharing
 
 ### Blocked <a name="m4-blocked"></a>
 
 ### Completed <a name="m4-done"></a>
+
+- [x] `4LR.1` Vercel deployment — live at david-ogden.vercel.app (SPA mode + vercel.json rewrites)
+- [x] `4LR.2` Environment variables — no secrets required; task closed
+- [x] `4LR.6` SEO — OG tags, Twitter card, SVG favicon (DO initials) added
+- [x] `4LR.5` Accessibility audit — dialog ARIA, focus management, nav landmarks, decorative SVG aria-hidden, anchor links, Button focus ring offset
 
 ---
 
@@ -105,15 +106,9 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 ```mermaid
 graph LR
   subgraph M4["M4 — Launch Ready"]
-    4LR.1["4LR.1\nVercel deploy"]
-    4LR.2["4LR.2\nEnv vars"]:::open
-    4LR.3["4LR.3\nBundle analysis"]
-    4LR.4["4LR.4\nCross-browser"]
-    4LR.5["4LR.5\nAccessibility"]
-    4LR.6["4LR.6\nSEO"]
+    4LR.3["4LR.3\nBundle analysis"]:::open
+    4LR.4["4LR.4\nCross-browser"]:::open
   end
-
-  4LR.1 --> 4LR.2 & 4LR.3 & 4LR.4 & 4LR.5 & 4LR.6
 
   classDef blocked fill:#f9f,stroke:#c0c,color:#000
   classDef open fill:#9f9,stroke:#0a0,color:#000
