@@ -9,13 +9,15 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@react-router/node": "^7.17.0",
     "framer-motion": "^12.38.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router": "7.14.0"
+    "react-router": "^7.17.0",
+    "isbot": "^5"
   },
   "devDependencies": {
-    "@react-router/dev": "7.14.0",
+    "@react-router/dev": "^7.17.0",
     "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^22",
     "@types/react": "^19.2.14",
