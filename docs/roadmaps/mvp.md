@@ -74,7 +74,6 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 
 ### To Do <a name="m4-todo"></a>
 
-- [ ] `4LR.3` Performance optimisation and bundle analysis
 - [ ] `4LR.4` Cross-browser testing
 
 ### Blocked <a name="m4-blocked"></a>
@@ -85,6 +84,7 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 - [x] `4LR.2` Environment variables — no secrets required; task closed
 - [x] `4LR.6` SEO — OG tags, Twitter card, SVG favicon (DO initials) added
 - [x] `4LR.5` Accessibility audit — dialog ARIA, focus management, nav landmarks, decorative SVG aria-hidden, anchor links, Button focus ring offset
+- [x] `4LR.3` Bundle analysis — removed unused deps (resend, zod, isbot, @react-router/node, @react-router/serve); remaining deps are lean
 
 ---
 
@@ -106,7 +106,6 @@ A polished, nature-themed developer portfolio that showcases work through smooth
 ```mermaid
 graph LR
   subgraph M4["M4 — Launch Ready"]
-    4LR.3["4LR.3\nBundle analysis"]:::open
     4LR.4["4LR.4\nCross-browser"]:::open
   end
 
